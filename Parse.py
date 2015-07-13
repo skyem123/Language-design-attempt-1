@@ -208,21 +208,6 @@ class LangEval:
                 # It's also a valid token
                 valid_token = True
 
-            ## It could be a keyword
-            ## The arguments are processed normally without recursion
-            #if not valid_token:
-            #    for keyword in sorted(keywords, key=len, reverse=True):
-            #        # Check if the keyword is in the string
-            #        if string[i:i+len(keyword)] == keyword:
-            #            if not string[i+len(keyword):i+len(keyword)+1].isalnum():
-            #                # Skip the rest of the operator if it is in the string
-            #                i += len(keyword) - 1
-            #                # add the located operator to the parts list
-            #                found_token = ("keyword", keyword, i, i + len(keyword) - 1)
-            #                # It's a valid token!
-            #                valid_token = True
-            #                break
-
             # It could be unknown!
             if char.isalnum() and not valid_token:
                 unknown = self.__eval_unknown(string, i, operators + string_markers)

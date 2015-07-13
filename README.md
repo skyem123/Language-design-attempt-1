@@ -1,2 +1,2 @@
-# Language-attempt-1-
-Attempt at making a programming language
+# Skye's first attempt at a programming language
+

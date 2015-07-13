@@ -225,50 +225,67 @@ class LangEval:
             i += 1
         return parts
 
-    def __process_set_variable(self):
+    def __process_set_variable(self, next_token):
+        if next_token[1] in self.set_operators:
+            return (True, "set", next_token)
+            # is it an increment / decrement operator?
+        elif next_token[1] in self.inc_dec_operators:
+            return True, ("inc_dec", next_token)
+        else:
+            return False
         pass
 
     def __process_raw_tokens(self, raw_tokens):
-        if raw_tokens[-1] != ("end_of_tokens",):
+        if (len(raw_tokens) == 0) or len(raw_tokens[-1]) == 0 or (raw_tokens[-1][0] != "end_of_tokens"):
             raw_tokens.append(("end_of_tokens",))
         # Loop through the raw tokens
-        token = ()
         i = 0
-        while token != ("end_of_tokens",):
+        while True:
             token = raw_tokens[i]
             print("[loop] token " + str(i) + " is: " + str(token))
+            if token[0] == "end_of_tokens":
+                break
+            next_token = raw_tokens[i + 1]
 
             # If this token is unknown
             if token[0] == "unknown":
-                next_token = raw_tokens[i + 1]
                 print("[unknown] token " + str(i + 1) + " is: " + str(next_token))
 
-                thing_name = token[1]
-                thing_type = "unknown"
+                thing_name = token
+                thing_modifiers = []
+                thing_operation = ()
 
                 # If the next token is unknown
                 if next_token[0] == "unknown":
-                    thing_type = token[1]  # Then the first token is the type,
-                    thing_name = next_token[1]  # and the second token is the name
+                    thing_modifiers += (token,)
+                    while (next_token[0] == "unknown") and (raw_tokens[i + 2][0] == "unknown"):
+                        thing_modifiers += (next_token,)
+                        i+=1
+                        next_token = raw_tokens[i + 1]
+                        print("[type] token " + str(i + 1) + " is: " + str(next_token))
+                    thing_name = next_token
                     i+=1
+                    token = raw_tokens[i]
                     next_token = raw_tokens[i + 1]
-                    print("[type] token " + str(i + 1) + " is: " + str(next_token))
-                # but / and if the next token is a set operator...
+                    thing_operation = ("variable_definition",)
+
                 if next_token[0] == "operator":
-                    print("[operator] type of `" + thing_name + "` is `" + thing_type + "`")
-                    if next_token[1] in self.set_operators:
-                        print("[operator] setting variable `" + thing_name + "` of the type `" + thing_type + "`")
-                    elif next_token[1] in self.inc_dec_operators:
-                        print("[operator] Incrementing / Decrementing variable `" + thing_name + "` with operator `" + next_token[1] + "`")
+                    # but / and if the next token is a set operator...
+                    if next_token[1] in (self.set_operators + self.inc_dec_operators):
+                        if (self.__process_set_variable(next_token))[0]:
+                            thing_operation = ("variable_set", next_token)
                     else:
                         i-=1
                     i+=1
+
+                print(thing_modifiers, thing_name, thing_operation)
 
             i+=1
             pass
 
     def eval(self, string):
         raw_tokens = self.__tokenize(string)
+        print(raw_tokens)
         return self.__process_raw_tokens(raw_tokens)
         # TODO: process parts
         #for part in parts:

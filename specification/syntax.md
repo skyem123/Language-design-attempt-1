@@ -28,18 +28,28 @@ runFunction((Integer number) { IO.Standard.writeLine(number) })
 ```
 Should output ```42``` onto the console
 
-There will be many "helper" keywords that help show the language what you want to do with minimal mess, for example, the keyword ```entrypoint``` will be given a function to start with when the file is run.
+There will be many "helper" keywords that help show the language what you want to do with minimal mess, for example, the keyword ```entrypoint``` will be given a function to start with when the file is run. Note that ```entrypoint``` is Syntactic Sugar for placing a call to the function at the end of the file.
 ##### Example "Hello World" Program using ```entrypoint``` #####
 ```
 entrypoint (){
 	IO.Standard.writeLine("Hello World!")
 }
 ```
+
 ##### Another example of using ```entrypoint``` #####
+
 ```
 entrypoint main
 
 main() {
 	IO.Standard.writeLine("Hello again!")
 }
+```
+Note that this is the same as
+```
+main() {
+	IO.Standard.writeLine("Hello again!")
+}
+
+main()
 ```

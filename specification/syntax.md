@@ -9,7 +9,9 @@ Three styles of comments are supported, such as ```/* */```, ```//``` and ```#``
 ```
 /* This ia a
    multi-line
-   comment    */
+   comment
+   /* nesting is a good idea, too */
+*/
 
 // This is a single line comment
 

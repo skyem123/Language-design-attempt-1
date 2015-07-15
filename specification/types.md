@@ -19,7 +19,7 @@ a = b // this will not work as a and b are of different types
 ```
 
 #### Casting
-However, you **can*** put an Integer into a ```String```, as the language will be able to cast the ```Integer``` to a ```String``` without any chance of failiure.
+However, you **can** put an Integer into a ```String```, as the language will be able to cast the ```Integer``` to a ```String``` without any chance of failiure.
 ```
 Integer a = 42
 String b = a  // This will make the string "42"

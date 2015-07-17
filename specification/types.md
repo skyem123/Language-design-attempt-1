@@ -31,12 +31,14 @@ Integer b = (Integer)a
 ```
 
 #### Dynamic Typing
-Dynamic typing is allowed with the ```Dynamic``` type. Everything can put put into a varible with a ```Dynamic``` type, but to get data out of a Dynamic variable, it needs to be cast.
+Dynamic typing is allowed with the ```Dynamic``` type. Everything can put put into a varible with a ```Dynamic``` type, but to get data out of a Dynamic variable it does not need to be cast, but it can throw an exception just like casting would!
 ```
 Dynamic a = "Hello, World!" // a now contains a string
-a = 42 // now it contains a number
-Integer b = a // this will NOT work and so will throw an exception! 
-Integer b = (Integer)a // ...but this will work.
+a = 42 // now it contains an Integer
+Integer b = a // this will work.
+
+Dynamic c = "This is a test"
+Integer d = c // This will not work, as you can't convert normal text into an Integer!
 ```
 
 #### Subtyping

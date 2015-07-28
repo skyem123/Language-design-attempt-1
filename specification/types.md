@@ -19,14 +19,14 @@ a = b // this will not work as a and b are of different types
 ```
 
 #### Casting
-However, you **can** put an Integer into a ```String```, as the language will be able to cast the ```Integer``` to a ```String``` without any chance of failiure.
+However, you **can** put an ```Integer``` into a ```Float```, as the language will be able to cast the ```Integer``` to a ```Float``` without any chance of failiure.
 ```
 Integer a = 42
-String b = a  // This will make the string "42"
+Float b = a  // This will make the string "42"
 ```
-It is possible to convert a String into an Integer, by forcing a cast. Forcing a cast will mean that there is a chance of failiure, which will throw an exception.
+It is possible to convert a ```Float``` into an ```Integer```, by forcing a cast. Forcing a cast will mean that there is a chance of failiure, which will throw an exception.
 ```
-String a = "42"
+Float a = 42
 Integer b = (Integer)a
 ```
 

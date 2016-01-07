@@ -19,14 +19,14 @@ a = b // this will not work as a and b are of different types
 ```
 
 #### Casting
-However, you **can** put an ```Integer``` into a ```Float```, as the language will be able to cast the ```Integer``` to a ```Float``` without any chance of failiure.
+However, you **can** put an ```Integer``` into a ```Long```, as the language will be able to cast the ```Integer``` to a ```Long``` without any chance of failiure.
 ```
 Integer a = 42
-Float b = a  // This will make the string "42"
+Long b = a 
 ```
-It is possible to convert a ```Float``` into an ```Integer```, by forcing a cast. Forcing a cast will mean that there is a chance of failiure, which will throw an exception.
+It is possible to convert a ```Long``` into an ```Integer```, by forcing a cast. Forcing a cast will mean that there is a chance of failiure, which will throw an exception.
 ```
-Float a = 42
+Long a = 42
 Integer b = (Integer)a
 ```
 
@@ -38,7 +38,7 @@ a = 42 // now it contains an Integer
 Integer b = a // this will work.
 
 Dynamic c = "This is a test"
-Integer d = c // This will not work, as you can't convert normal text into an Integer!
+Integer d = c // This will crash, as you can't convert normal text into an Integer!
 ```
 
 #### Subtyping

@@ -14,15 +14,13 @@ Three styles of comments are supported, such as ```/* */```, ```//``` and ```#``
 */
 
 // This is a single line comment
-
-# This is another single line comment
 ```
 
 Functions are first class and the minimum needed for a function is ```() {}```, for example, if there was a function that took functions and ran them, a function could be simply passed without strange syntax.
 ##### Example of passing a function to another function #####
 ```
-// Note that runFunction(Function toRun) {} is Syntactic Sugar for runFunction = (Function toRun) {}
-runFunction(Function toRun) {
+// Note that val runFunction(Function toRun) {} is Syntactic Sugar for val runFunction = (Function toRun) {}
+val runFunction(Function toRun) {
 	toRun(42)
 }
 
